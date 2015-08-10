@@ -1,1 +1,14 @@
 <h1>Home Page</h1>
+<a href="/new">Add another song... It's FREE (for now)!</a>
+
+<% @songs.each do |song| %>
+  <div class="hihi">
+    <h3><%= song.title %></h3>
+    <p>
+    <%= song.author %>
+    <%= song.created_at %>
+    <%= song.updated_at %>
+    </p>
+  </div>
+<% end %>
+
