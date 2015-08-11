@@ -14,13 +14,22 @@
   <div class="hihi">
     <h3><%= song.title %></h3>
     <p>
+    <% if song.user %>
+      <label>Posted by: </label>
+      <%= song.user.username %>
+    <%end%>
+    <label>Author: </label>
     <%= song.author %>
+    <div>
+    <label>Created at: </label>
     <%= song.created_at %>
+    <label>Updated at: </label>
     <%= song.updated_at %>
-    <%= song.user.username if song.user %>
+    </div>
     </p>
   </div> 
 <% end %>
+
 <div>
   <form method="post" action="/signin">
     <div><label>Username:</label><input type="text" name="username"></div>  

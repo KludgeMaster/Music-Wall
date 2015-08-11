@@ -34,8 +34,11 @@ post '/new' do
     author: params[:author],
     url:    params[:url],  
   )
+  # binding.pry
   if session[:user_id] 
-    @song.user = User.find_by(username: params[:username])
+    user = User.find_by(id: session[:user_id])
+    # user.songs = @song
+    @song.user_id = user.id
   end
   if @song.save
     redirect '/index'
