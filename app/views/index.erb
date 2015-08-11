@@ -1,5 +1,14 @@
-<h1>Home Page</h1>
-<a href="/new">Add another song... It's FREE (for now)!</a>
+<h1>Ryan's Display ONLY JukeBox</h1>
+<div><a href="/new">Add another song... It's FREE (for now)!</a></div>
+<div><a href="/signup">Sign up for Ryan's AWESOME (<em>DISPLAY ONLY</em>) Playlist!!!!!</a></div>
+<div><label>Signed in as: </label>
+<%= 
+  if session[:user_id] 
+    User.find(session[:user_id].inspect).username
+  end
+%>
+</div>
+
 
 <% @songs.each do |song| %>
   <div class="hihi">
@@ -8,7 +17,20 @@
     <%= song.author %>
     <%= song.created_at %>
     <%= song.updated_at %>
+    <%= song.user.username if song.user %>
     </p>
-  </div>
+  </div> 
 <% end %>
+<div>
+  <form method="post" action="/signin">
+    <div><label>Username:</label><input type="text" name="username"></div>  
+    <div><label>E-mail:</label><input type="text" name="email"></div>
+    <div><input type="submit" value="Sign In"></div>
+  </form>
+</div>
 
+<div>
+  <form method="post" action="/signout">
+    <input type="submit" value="Sign Out">
+  </form>
+</div>
